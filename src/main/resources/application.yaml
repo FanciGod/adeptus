@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/adeptus?zeroDateTimeBehavior=convertToNull
+    username: "root"
+    password: ""
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    servlet:
+      multipart:
+        enabled: true
+        max-request-size: 10MB
+        max-file-size: 10MB
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: minhbvht@gmail.com
+      password: lbzu dhyu mspn qgvu
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+
+jwt:
+  signerKey: "u1w4lfbIlOqekNYgl0FMfLqEMeICbkOA8lHyyJm9iXU/ZH5uxuz0Wle1+lNOm3Yi"
+  valid-duration: 2000
+  refreshable-duration: 40000
