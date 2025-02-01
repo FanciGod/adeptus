@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/new_staff.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.NewStaffController">
+   <children>
+      <Label fx:id="largeLabel" layoutX="60.0" layoutY="40.0" text="NEW STAFF" />
+      <VBox layoutX="234.0" layoutY="147.0" prefHeight="511.0" prefWidth="616.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Username:" />
+                  <TextField fx:id="usernameInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Password:" />
+                  <TextField fx:id="passwordInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Re Password:" />
+                  <TextField fx:id="rePasswordInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Full name:" />
+                  <TextField fx:id="fullNameInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Email:" />
+                  <TextField fx:id="emailInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Dob:" />
+                  <DatePicker fx:id="dobInput" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Phone:" />
+                  <TextField fx:id="phoneInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Salary:" />
+                  <TextField fx:id="salaryInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Thumbnail:" />
+                  <Button fx:id="thumbnailButton" mnemonicParsing="false" onAction="#chooseFile" text="Choose Image" />
+                  <Label fx:id="imageName" prefWidth="132.0" text="Select a image" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox fx:id="roleHbox" prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Role:" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button onAction="#handleCreateStaff" fx:id="createStaffButton" layoutX="442.0" layoutY="685.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="150.0" text="Create" />
+   </children>
+</AnchorPane>

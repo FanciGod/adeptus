@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.adeptus.adeptusfe.controller.LoginController"
+            stylesheets="@../css/login.css">
+    <HBox prefHeight="615.0" prefWidth="1093.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fx:id="image" fitHeight="768.0" fitWidth="683.0" pickOnBounds="true">
+            <Image url="@../image/login-image.jpg"/>
+        </ImageView>
+        <Pane prefHeight="768.0" prefWidth="683.0">
+            <Label layoutX="86.0" layoutY="275.0" text="Username" styleClass="label-large"/>
+            <Label layoutX="88.0" layoutY="339.0" text="Password" styleClass="label-large"/>
+            <TextField fx:id="username" layoutX="210.0" layoutY="275.0"/>
+            <PasswordField fx:id="password" layoutX="210.0" layoutY="339.0"/>
+            <Button fx:id="loginButton" layoutX="273.0" layoutY="499.0" text="Login" onAction="#handleLogin"/>
+            <Label layoutX="211.0" layoutY="110.0" text="ADEPTUS" styleClass="title-label"/>
+        </Pane>
+    </HBox>
+</AnchorPane>

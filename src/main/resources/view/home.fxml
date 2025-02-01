@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" stylesheets="@../css/home.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.adeptus.adeptusfe.controller.HomeController">
+    <children>
+        <BorderPane prefHeight="768.0" prefWidth="1366.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <Pane fx:id="topBar" prefHeight="86.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="43.0" layoutY="8.0" text="ADEPTUS" textFill="#b17457">
+                            <font>
+                                <Font name="System Bold Italic" size="49.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="1240.0" layoutY="35.0" text=" your-name-here"/>
+                        <ImageView fitHeight="42.0" fitWidth="48.0" layoutX="1174.0" layoutY="23.0" pickOnBounds="true"
+                                   smooth="false">
+                            <image>
+                                <Image url="@../image/monkey092018.jpg"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </top>
+            <left>
+                <AnchorPane fx:id="sideNav" prefHeight="682.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox layoutY="27.0" prefHeight="655.0" prefWidth="300.0" spacing="5">
+                            <!-- Button cho các mục lớn với fx:id -->
+                            <Button fx:id="navbarButtonDashboard" prefWidth="200.0" text="Dashboard"
+                                    onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonClass" text="Class" onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonCourse" text="Course" onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonTeacher" text="Teacher" onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonStudent" text="Student" onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonStaff" text="Staff" onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonTransaction" text="Transaction" onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonMark" text="Mark" onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonClassHistory" text="Class History"
+                                    onAction="#handleNavBarClick"/>
+                            <Button fx:id="navbarButtonLogout" text="Log out"
+                                    onAction="#handleNavBarClick"/>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </left>
+            <center>
+                <!-- Đặt một AnchorPane làm vùng center có fx:id để dễ dàng thay đổi -->
+                <AnchorPane fx:id="centerPane" prefHeight="682.0" prefWidth="1166.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <!-- Các Pane sẽ được thay đổi động ở đây -->
+                    </children>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

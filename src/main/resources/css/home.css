@@ -1,0 +1,47 @@
+/* CSS cho các button */
+Button {
+    -fx-background-color: #9B2226;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 10px;  /* Giảm padding ngang */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #F59E0B;
+    -fx-border-width: 2px;
+}
+
+Button:hover {
+    -fx-background-color: #7a1b1d;
+    -fx-text-fill: #1C1917;
+}
+
+Button:pressed {
+    -fx-background-color: #460f11;
+}
+
+/* Đặt chiều rộng và chiều cao cho các button của navbar */
+#navbarButtonDashboard,
+#navbarButtonClass,
+#navbarButtonCourse,
+#navbarButtonTeacher,
+#navbarButtonStudent,
+#navbarButtonStaff,
+#navbarButtonTransaction,
+#navbarButtonMark,
+#navbarButtonLogout,
+#navbarButtonClassHistory {
+    -fx-pref-width: 250px;  /* Giảm chiều rộng xuống */
+    -fx-pref-height: 35px; /* Giảm chiều cao xuống */
+    -fx-alignment: CENTER;
+}
+
+VBox {
+    -fx-alignment: CENTER; /* Căn giữa các phần tử con theo chiều ngang */
+}
+
+/* Giảm khoảng cách giữa các button */
+
+.root {
+    -fx-background-color: #FAF7F0;
+}
