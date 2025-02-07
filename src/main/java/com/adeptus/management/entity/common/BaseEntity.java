@@ -1,4 +1,4 @@
-package com.adeptus.management.entity;
+package com.adeptus.management.entity.common;
 
 import jakarta.persistence.*;
 import lombok.Getter;

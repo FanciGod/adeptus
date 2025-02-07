@@ -1,5 +1,6 @@
-package com.adeptus.management.entity;
+package com.adeptus.management.entity.expenses;
 
+import com.adeptus.management.entity.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

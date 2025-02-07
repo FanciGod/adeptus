@@ -1,5 +1,6 @@
-package com.adeptus.management.entity;
+package com.adeptus.management.entity.student;
 
+import com.adeptus.management.entity.common.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -35,9 +36,6 @@ public class Student extends BaseEntity {
 
     @Column(nullable = false)
     private LocalDate dob;  // Ngày sinh
-
-    @Column(nullable = false)
-    private Integer lessonRemain;  // Số buổi học còn lại
 
     @OneToMany(mappedBy = "student")
     private Set<StudentClass> studentClasses; // Quan hệ 1:N với StudentClass

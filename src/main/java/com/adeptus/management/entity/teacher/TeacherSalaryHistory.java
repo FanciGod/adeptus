@@ -1,4 +1,4 @@
-package com.adeptus.management.entity;
+package com.adeptus.management.entity.teacher;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,24 +6,23 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "staff_salary")
+@Table(name = "teacher_salary")
 @Getter
 @Setter
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-public class StaffSalary {
+public class TeacherSalaryHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "staff_id", nullable = false)
-    private Staff staff;  // Quan hệ nhiều-một với Staff
+    @JoinColumn(name = "teacher_id", nullable = false)
+    private Teacher teacher;  // Quan hệ nhiều-một với Teacher
 
     @Column(nullable = false)
-    private Long salary;  // Lương của nhân viên trong khoảng thời gian
+    private Long salary;  // Lương của giáo viên trong khoảng thời gian
 
     @Column(nullable = false)
     private LocalDate startDate;  // Ngày bắt đầu của khoảng thời gian tính lương

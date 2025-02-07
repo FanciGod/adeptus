@@ -2,8 +2,8 @@ package com.adeptus.management.service.serviceImpl;
 
 import com.adeptus.management.dto.request.CreateNewStaffRequest;
 import com.adeptus.management.dto.response.StaffResponse;
-import com.adeptus.management.entity.Staff;
-import com.adeptus.management.entity.StaffSalary;
+import com.adeptus.management.entity.staff.Staff;
+import com.adeptus.management.entity.staff.StaffSalary;
 import com.adeptus.management.exception.AppException;
 import com.adeptus.management.exception.ErrorCode;
 import com.adeptus.management.mapper.ClassesMapper;

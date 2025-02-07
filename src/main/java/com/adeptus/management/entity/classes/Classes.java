@@ -1,5 +1,9 @@
-package com.adeptus.management.entity;
+package com.adeptus.management.entity.classes;
 
+import com.adeptus.management.entity.staff.Staff;
+import com.adeptus.management.entity.student.StudentClass;
+import com.adeptus.management.entity.teacher.Teacher;
+import com.adeptus.management.entity.common.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;

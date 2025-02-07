@@ -2,7 +2,7 @@ package com.adeptus.management.mapper;
 
 import com.adeptus.management.dto.request.CreateNewStaffRequest;
 import com.adeptus.management.dto.response.StaffResponse;
-import com.adeptus.management.entity.Staff;
+import com.adeptus.management.entity.staff.Staff;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

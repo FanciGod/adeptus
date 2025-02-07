@@ -1,11 +1,12 @@
-package com.adeptus.management.entity;
+package com.adeptus.management.entity.staff;
 
+import com.adeptus.management.entity.classes.Classes;
+import com.adeptus.management.entity.common.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Set;
 @Entity
 @Table(name = "staff")

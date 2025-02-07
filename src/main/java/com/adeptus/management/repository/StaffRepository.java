@@ -1,6 +1,6 @@
 package com.adeptus.management.repository;
 
-import com.adeptus.management.entity.Staff;
+import com.adeptus.management.entity.staff.Staff;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

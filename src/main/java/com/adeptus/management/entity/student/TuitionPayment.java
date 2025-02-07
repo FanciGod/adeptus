@@ -1,10 +1,9 @@
-package com.adeptus.management.entity;
+package com.adeptus.management.entity.student;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tuition_payment")
