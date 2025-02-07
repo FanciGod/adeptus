@@ -23,6 +23,5 @@ public interface StaffRepository extends JpaRepository<Staff,Long> {
 
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
-
     Boolean existsByPhone(String phone);
 }

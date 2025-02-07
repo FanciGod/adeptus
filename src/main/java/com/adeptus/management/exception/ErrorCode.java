@@ -56,7 +56,9 @@ public enum ErrorCode {
     PAYPAL_TOKEN_DENIED(1049, "paypal token not approved", HttpStatus.BAD_REQUEST),
     NOTIFICATION_ID_NOT_FOUND(1050, "notification id not found", HttpStatus.BAD_REQUEST),
     PHONE_DUPLICATED(1051, "phone number is duplicated", HttpStatus.BAD_REQUEST),
-    CLASS_ID_NOT_FOUND(1052, "class id is not found", HttpStatus.BAD_REQUEST);
+    CLASS_ID_NOT_FOUND(1052, "class id is not found", HttpStatus.BAD_REQUEST),
+    STAFF_NOT_FOUND(1053, "staff is not found", HttpStatus.BAD_REQUEST ),
+    INVALID_EMAIL(1054,"Invalid email address" , HttpStatus.BAD_REQUEST ),;
 
     private final int code;
     private final String message;
