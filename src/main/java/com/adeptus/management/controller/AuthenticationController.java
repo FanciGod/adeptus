@@ -1,10 +1,10 @@
 package com.adeptus.management.controller;
 
 import com.adeptus.management.dto.ApiResponse;
-import com.adeptus.management.dto.request.AuthenticationRequest;
-import com.adeptus.management.dto.request.IntrospectRequest;
-import com.adeptus.management.dto.request.LogoutRequest;
-import com.adeptus.management.dto.request.RefreshTokenRequest;
+import com.adeptus.management.dto.request.auth.AuthenticationRequest;
+import com.adeptus.management.dto.request.auth.IntrospectRequest;
+import com.adeptus.management.dto.request.auth.LogoutRequest;
+import com.adeptus.management.dto.request.auth.RefreshTokenRequest;
 import com.adeptus.management.dto.response.AuthenticationResponse;
 import com.adeptus.management.dto.response.IntrospectResponse;
 import com.adeptus.management.service.AuthenticationService;

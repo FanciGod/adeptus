@@ -1,7 +1,8 @@
 package com.adeptus.management.controller;
 
 import com.adeptus.management.dto.ApiResponse;
-import com.adeptus.management.dto.request.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.staff.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.staff.UpdateStaffRequest;
 import com.adeptus.management.dto.response.StaffResponse;
 import com.adeptus.management.service.StaffService;
 import jakarta.validation.Valid;
@@ -41,7 +42,7 @@ public class StaffController {
 
     @PutMapping("/{id}")
     public ResponseEntity<StaffResponse> updateStaff(@PathVariable Long id,
-                                                     @Valid @ModelAttribute CreateNewStaffRequest request) throws IOException {
+                                                     @Valid @ModelAttribute UpdateStaffRequest request) throws IOException {
         StaffResponse updatedStaff = staffService.updateStaff(id, request);
         return ResponseEntity.ok(updatedStaff);
     }

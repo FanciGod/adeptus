@@ -1,4 +1,4 @@
-package com.adeptus.management.dto.request;
+package com.adeptus.management.dto.request.auth;
 
 import lombok.*;
 

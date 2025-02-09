@@ -1,8 +1,8 @@
 package com.adeptus.management.service;
 
-import com.adeptus.management.dto.request.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.staff.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.staff.UpdateStaffRequest;
 import com.adeptus.management.dto.response.StaffResponse;
-import com.adeptus.management.entity.staff.Staff;
 import org.springframework.data.domain.Page;
 
 import java.io.IOException;
@@ -14,6 +14,6 @@ public interface StaffService {
 
     StaffResponse createNewStaff(CreateNewStaffRequest request) throws IOException;
 
-    StaffResponse updateStaff(Long id, CreateNewStaffRequest request) throws IOException;
+    StaffResponse updateStaff(Long id, UpdateStaffRequest request) throws IOException;
     void deleteStaff(Long id);
 }

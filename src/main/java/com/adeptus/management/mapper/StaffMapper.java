@@ -1,6 +1,6 @@
 package com.adeptus.management.mapper;
 
-import com.adeptus.management.dto.request.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.staff.CreateNewStaffRequest;
 import com.adeptus.management.dto.response.StaffResponse;
 import com.adeptus.management.entity.staff.Staff;
 import org.mapstruct.Mapper;

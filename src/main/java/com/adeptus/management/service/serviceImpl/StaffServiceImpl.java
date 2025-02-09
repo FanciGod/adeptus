@@ -1,6 +1,7 @@
 package com.adeptus.management.service.serviceImpl;
 
-import com.adeptus.management.dto.request.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.staff.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.staff.UpdateStaffRequest;
 import com.adeptus.management.dto.response.StaffResponse;
 import com.adeptus.management.entity.staff.Staff;
 import com.adeptus.management.entity.staff.StaffSalary;
@@ -119,34 +120,34 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     @Transactional
-    public StaffResponse updateStaff(Long id, CreateNewStaffRequest request) throws IOException {
+    public StaffResponse updateStaff(Long id, UpdateStaffRequest request) throws IOException {
         // Lấy staff hiện tại, chỉ update nếu staff đang active
         Staff existingStaff = staffRepository.findById(id)
                 .filter(Staff::getIsActive)
                 .orElseThrow(() -> new AppException(ErrorCode.STAFF_NOT_FOUND));
 
-        // Nếu cập nhật password (giá trị không rỗng) thì kiểm tra rePassword và mã hóa
-        if (request.getPassword() != null && !request.getPassword().isEmpty()) {
-            if (!request.getPassword().equals(request.getRePassword())) {
-                throw new AppException(ErrorCode.PASSWORD_NOT_MATCH);
+        // Kiểm tra trùng email: nếu email mới khác với email hiện tại, kiểm tra trùng lặp trong database
+        if (!existingStaff.getEmail().equalsIgnoreCase(request.getEmail())) {
+            if (staffRepository.existsByEmail(request.getEmail())) {
+                throw new AppException(ErrorCode.EMAIL_DUPLICATED);
             }
-            String encodedPassword = passwordEncoder.encode(request.getPassword());
-            existingStaff.setPassword(encodedPassword);
         }
-
+        if (!existingStaff.getUsername().equalsIgnoreCase(request.getUsername())) {
+            if (staffRepository.existsByUsername(request.getUsername())) {
+                throw new AppException(ErrorCode.USERNAME_DUPLICATED);
+            }
+        }
+        if (!existingStaff.getPhone().equals(request.getPhone())) {
+            if (staffRepository.existsByPhone(request.getPhone())) {
+                throw new AppException(ErrorCode.PHONE_DUPLICATED);
+            }
+        }
         // Cập nhật các trường cơ bản
         existingStaff.setUsername(request.getUsername());
         existingStaff.setFullName(request.getFullName());
         existingStaff.setEmail(request.getEmail());
         existingStaff.setDob(request.getDob());
         existingStaff.setPhone(request.getPhone());
-
-        // Cập nhật thumbnail nếu có file mới
-        MultipartFile thumbnail = request.getThumbnail();
-        if (thumbnail != null && !thumbnail.isEmpty()) {
-            // Nếu cần: có thể xóa thumbnail cũ trên Cloudinary trước khi upload file mới
-            uploadThumbnail(existingStaff, thumbnail);
-        }
 
         // Cập nhật danh sách role nếu có dữ liệu mới
         if (request.getRoleId() != null && !request.getRoleId().isEmpty()) {
