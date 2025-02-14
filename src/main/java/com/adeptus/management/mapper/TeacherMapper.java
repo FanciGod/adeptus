@@ -4,7 +4,6 @@ import com.adeptus.management.dto.request.teacher.CreateTeacherRequest;
 import com.adeptus.management.dto.request.teacher.UpdateTeacherRequest;
 import com.adeptus.management.dto.response.ClassResponse;
 import com.adeptus.management.dto.response.TeacherResponse;
-import com.adeptus.management.dto.response.TeacherSalaryHistoryResponse;
 import com.adeptus.management.dto.response.TeacherSalaryResponse;
 import com.adeptus.management.entity.classes.Classes;
 import com.adeptus.management.entity.teacher.Teacher;
