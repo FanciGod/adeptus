@@ -2,17 +2,27 @@ package com.adeptus.management.mapper;
 
 import com.adeptus.management.dto.request.teacher.CreateTeacherRequest;
 import com.adeptus.management.dto.request.teacher.UpdateTeacherRequest;
+import com.adeptus.management.dto.response.ClassResponse;
 import com.adeptus.management.dto.response.TeacherResponse;
+import com.adeptus.management.dto.response.TeacherSalaryHistoryResponse;
+import com.adeptus.management.dto.response.TeacherSalaryResponse;
+import com.adeptus.management.entity.classes.Classes;
 import com.adeptus.management.entity.teacher.Teacher;
+import com.adeptus.management.entity.teacher.TeacherSalaryHistory;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+
+import java.util.List;
+import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface TeacherMapper {
 
     // Chuyển Teacher sang TeacherResponse; ánh xạ isActive từ BaseEntity
     @Mapping(target = "isActive", source = "isActive")
+    @Mapping(target = "salaries", source = "salaries")
+    @Mapping(target = "classes", source = "classes")
     TeacherResponse toTeacherResponse(Teacher teacher);
 
     // Chuyển CreateTeacherRequest sang Teacher entity
@@ -25,4 +35,8 @@ public interface TeacherMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "isActive", ignore = true)
     void updateTeacherFromRequest(UpdateTeacherRequest request, @MappingTarget Teacher teacher);
+
+    @Mapping(target = "className", source = "className")
+    List<TeacherSalaryResponse> toSalaryResponses(Set<TeacherSalaryHistory> salaries);
+    List<ClassResponse> toClassResponses(Set<Classes> classes);
 }

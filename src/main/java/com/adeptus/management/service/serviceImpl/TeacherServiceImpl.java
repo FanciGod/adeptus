@@ -28,7 +28,12 @@ public class TeacherServiceImpl implements TeacherService {
     public List<TeacherResponse> getAllTeachers() {
         return teacherRepository.getAllActiveTeachers()
                 .stream()
-                .map(teacherMapper::toTeacherResponse)
+                .map(teacher -> {
+                    TeacherResponse response = teacherMapper.toTeacherResponse(teacher);
+                    response.setSalaries(teacherMapper.toSalaryResponses(teacher.getSalaries()));
+                    response.setClasses(teacherMapper.toClassResponses(teacher.getClasses()));
+                    return response;
+                })
                 .toList();
     }
 
@@ -36,14 +41,24 @@ public class TeacherServiceImpl implements TeacherService {
     public Page<TeacherResponse> getAllTeachersWithPagination(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         return teacherRepository.getAllActiveTeachers(pageable)
-                .map(teacherMapper::toTeacherResponse);
+                .map(teacher -> {
+                    TeacherResponse response = teacherMapper.toTeacherResponse(teacher);
+                    response.setSalaries(teacherMapper.toSalaryResponses(teacher.getSalaries()));
+                    response.setClasses(teacherMapper.toClassResponses(teacher.getClasses()));
+                    return response;
+                });
     }
 
     @Override
     public TeacherResponse getTeacherById(Long id) {
         Teacher teacher = teacherRepository.findActiveTeacherById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Teacher", id));
-        return teacherMapper.toTeacherResponse(teacher);
+
+        TeacherResponse response = teacherMapper.toTeacherResponse(teacher);
+        response.setSalaries(teacherMapper.toSalaryResponses(teacher.getSalaries()));
+        response.setClasses(teacherMapper.toClassResponses(teacher.getClasses()));
+
+        return response;
     }
 
     @Override

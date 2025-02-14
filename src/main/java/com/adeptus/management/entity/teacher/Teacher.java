@@ -28,5 +28,5 @@ public class Teacher extends BaseEntity {
     private Set<TeacherSalaryHistory> salaries;  // Quan hệ 1:n với TeacherSalary
 
     @OneToMany(mappedBy = "teacher")
-    private Set<Classes> aClasses;  // Quan hệ 1:n với Classes
+    private Set<Classes> classes;  // Quan hệ 1:n với Classes
 }
