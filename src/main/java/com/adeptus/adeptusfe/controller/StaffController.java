@@ -5,14 +5,17 @@ import com.adeptus.adeptusfe.dto.response.ApiResponse;
 import com.adeptus.adeptusfe.dto.response.PageResponse;
 import com.adeptus.adeptusfe.dto.response.StaffResponse;
 import com.adeptus.adeptusfe.service.StaffService;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +28,7 @@ public class StaffController {
     public Button findButton;
     public TextField searchInput;
     public TableColumn action;
+
     @FXML
     private TableView<StaffResponse> staffTable;
     @FXML
@@ -49,8 +53,8 @@ public class StaffController {
     @FXML
     public void initialize() {
         // Ánh xạ cột với thuộc tính trong StaffResponse
-        idColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleLongProperty(cellData.getValue().getId()).asObject());
-        fullNameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFullName()));
+        idColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getId()).asObject());
+        fullNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFullName()));
         // Nếu có nhiều role, nối các roleName lại với nhau
         roleColumn.setCellValueFactory(cellData -> {
             // Lấy danh sách các role
@@ -58,28 +62,41 @@ public class StaffController {
 
             // Nếu không có roles thì trả về chuỗi trống
             if (roles == null || roles.isEmpty()) {
-                return new javafx.beans.property.SimpleStringProperty("");
+                return new SimpleStringProperty("");
             }
 
             // Lấy tất cả roleName và nối chúng lại bằng dấu phẩy
             String roleNames = roles.stream()
                     .map(RoleDto::getRoleName) // Lấy tên role
                     .collect(Collectors.joining(", ")); // Nối các roleName lại với nhau bằng dấu phẩy
-            return new javafx.beans.property.SimpleStringProperty(roleNames);
+            return new SimpleStringProperty(roleNames);
         });
-        emailColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));
-        phoneColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getPhone()));
-        dobColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDob().toString()));
+        emailColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
+        phoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhone()));
+        dobColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDob().toString()));
         action.setCellFactory(param -> {
             return new TableCell<StaffResponse, String>() {
                 private final Button deleteButton = new Button("Delete");
+                private final Button updateButton = new Button("Update");
+                private final HBox buttonContainer = new HBox(5, updateButton, deleteButton); // HBox với khoảng cách 5px
 
                 {
                     // Thêm sự kiện khi nhấn nút Delete
                     deleteButton.setOnAction(event -> {
                         StaffResponse staff = getTableRow().getItem();
                         if (staff != null) {
-                            handleDelete(staff);  // Gọi phương thức handleDelete khi nhấn nút
+                            try {
+                                handleDelete(staff);  // Gọi phương thức handleDelete khi nhấn nút
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    });
+
+                    updateButton.setOnAction(event -> {
+                        StaffResponse staff = getTableRow().getItem();
+                        if (staff != null) {
+                            openUpdateStaffWindow(staff);
                         }
                     });
                 }
@@ -90,7 +107,8 @@ public class StaffController {
                     if (empty) {
                         setGraphic(null);
                     } else {
-                        setGraphic(deleteButton);
+                        setGraphic(buttonContainer);
+
                     }
                 }
             };
@@ -98,7 +116,9 @@ public class StaffController {
         loadStaff(currentPage);
     }
 
-    private void handleDelete(StaffResponse staff) {
+    private void handleDelete(StaffResponse staff) throws IOException {
+        staffService.deleteStaffById(staff.getId());
+        loadStaff(0);
     }
 
     public void loadStaff(int page) {
@@ -177,5 +197,55 @@ public class StaffController {
         }
 
         staffTable.setItems(filteredList);  // Cập nhật bảng với kết quả tìm kiếm
+    }
+
+
+    private void openUpdateStaffWindow(StaffResponse staff) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/update_staff.fxml"));
+            Parent root = loader.load();
+
+            // Truyền ID vào controller của cửa sổ mới
+            UpdateStaffController controller = loader.getController();
+            controller.setStaff(staff);
+
+
+            Stage stage = new Stage();
+            stage.setTitle("Staff Detail");
+            stage.setScene(new Scene(root));
+            UpdateStaffController updateStaffController = loader.getController();
+            updateStaffController.setParentController(this); // Truyền tham chiếu StaffController
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void openStaffDetail(MouseEvent event) {
+        if (event.getClickCount() == 2) { // Chỉ xử lý khi double-click
+            StaffResponse selectedStaff = staffTable.getSelectionModel().getSelectedItem();
+            if (selectedStaff != null) {
+                openStaffDetailWindow(selectedStaff);
+            }
+        }
+    }
+
+    private void openStaffDetailWindow(StaffResponse staff) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staff_detail.fxml"));
+            Parent root = loader.load();
+
+            // Truyền ID vào controller của cửa sổ mới
+            StaffDetailController controller = loader.getController();
+            controller.setStaff(staff);
+
+            Stage stage = new Stage();
+            stage.setTitle("Staff Detail");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

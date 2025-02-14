@@ -4,38 +4,30 @@ import com.adeptus.adeptusfe.dto.request.CreateNewStaffRequest;
 import com.adeptus.adeptusfe.dto.response.ApiResponse;
 import com.adeptus.adeptusfe.dto.response.RoleResponse;
 import com.adeptus.adeptusfe.dto.response.StaffResponse;
-import com.adeptus.adeptusfe.service.NewStaffService;
 import com.adeptus.adeptusfe.service.RoleService;
+import com.adeptus.adeptusfe.service.StaffService;
 import com.adeptus.adeptusfe.utility.Message;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class NewStaffController {
 
+    private final StaffService staffService = new StaffService();
+
     public TextField usernameInput;
-    public TextField passwordInput;
-    public TextField rePasswordInput;
+    public PasswordField passwordInput;
+    public PasswordField rePasswordInput;
     public TextField fullNameInput;
     public TextField emailInput;
     public DatePicker dobInput;
@@ -102,7 +94,6 @@ public class NewStaffController {
 
     @FXML
     private void handleCreateStaff(ActionEvent event) throws IOException {
-        NewStaffService newStaffService = new NewStaffService();
 
         CreateNewStaffRequest request = CreateNewStaffRequest.builder()
                 .username(usernameInput.getText())
@@ -117,7 +108,7 @@ public class NewStaffController {
                 .roleId(getSelectedRoles())
                 .build();
 
-        ApiResponse<StaffResponse> newStaff = newStaffService.createNewStaff(request);
+        ApiResponse<StaffResponse> newStaff = staffService.createNewStaff(request);
 
         if (newStaff.getCode() == 1000) {
             Message.showInfo("created successfully");

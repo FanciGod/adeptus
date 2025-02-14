@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/update_basic_info.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.UpdateBasicInfoController">
+   <children>
+      <AnchorPane layoutX="164.0" layoutY="41.0" prefHeight="120.0" prefWidth="1024.0" AnchorPane.bottomAnchor="648.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="largeLabel" layoutX="91.0" layoutY="52.0" prefWidth="163.0" text="UPDATE YOUR INFORMATION" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="120.0" prefHeight="648.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+         <children>
+            <VBox layoutX="222.0" layoutY="115.0" prefHeight="282.0" prefWidth="630.0" AnchorPane.bottomAnchor="251.0" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="115.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Full name" />
+                        <TextField fx:id="fullName" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Email" />
+                        <TextField fx:id="email" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Phone number" />
+                        <TextField fx:id="phone" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Date of birth" />
+                        <DatePicker fx:id="dob" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button onAction="#updateStaff" fx:id="submit" layoutX="496.0" layoutY="484.0" mnemonicParsing="false" text="Change" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

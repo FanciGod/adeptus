@@ -12,11 +12,6 @@ public class JwtUtils {
         return signedJWT.getJWTClaimsSet().getSubject();
     }
 
-    public static String getFullNameFromJWT(String token) throws ParseException {
-        SignedJWT signedJWT = SignedJWT.parse(token);
-        JWTClaimsSet claims = signedJWT.getJWTClaimsSet();
-        return claims.getStringClaim("fullname");
-    }
     public static boolean isTokenExpired(String token) {
         if (token == null || token.isEmpty()) {
             return true; // Token trống hoặc null, giả sử là đã hết hạn
