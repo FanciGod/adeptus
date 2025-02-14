@@ -27,6 +27,7 @@ public class StaffResponse {
     private List<StaffSalaryDto> salaries;
     private List<RoleDto> roles;
     private Set<ClassesDto> classes;
+    private String thumbnailUrl;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -2,7 +2,9 @@ package com.adeptus.management.controller;
 
 import com.adeptus.management.dto.ApiResponse;
 import com.adeptus.management.dto.request.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.UpdateStaffBasicInfoRequest;
 import com.adeptus.management.dto.response.StaffResponse;
+import com.adeptus.management.entity.Staff;
 import com.adeptus.management.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,10 +25,30 @@ public class StaffController {
                 .build();
     }
 
+    @GetMapping("info/{id}")
+    public ApiResponse<StaffResponse> getStaffById(@PathVariable Long id){
+        return ApiResponse.<StaffResponse>builder()
+                .result(staffService.getStaffById(id))
+                .build();
+    }
+
     @PostMapping("new")
     public ApiResponse<StaffResponse> createNewStaff(@ModelAttribute CreateNewStaffRequest request) throws IOException {
         return ApiResponse.<StaffResponse>builder()
                 .result(staffService.createNewStaff(request))
                 .build();
+    }
+
+    @PutMapping("update/{id}")
+    public ApiResponse<StaffResponse> updateStaffBasicInfo(@RequestBody UpdateStaffBasicInfoRequest request, @PathVariable Long id){
+        return ApiResponse.<StaffResponse>builder()
+                .result(staffService.updateStaffBasicInfoById(request,id))
+                .build();
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ApiResponse<?> deleteStaff(@PathVariable Long id){
+        staffService.deleteStaffById(id);
+        return ApiResponse.builder().build();
     }
 }

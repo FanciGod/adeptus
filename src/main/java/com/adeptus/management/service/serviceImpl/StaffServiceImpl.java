@@ -1,7 +1,10 @@
 package com.adeptus.management.service.serviceImpl;
 
+import com.adeptus.management.dto.ClassesDto;
 import com.adeptus.management.dto.request.CreateNewStaffRequest;
+import com.adeptus.management.dto.request.UpdateStaffBasicInfoRequest;
 import com.adeptus.management.dto.response.StaffResponse;
+import com.adeptus.management.entity.Classes;
 import com.adeptus.management.entity.Staff;
 import com.adeptus.management.entity.StaffSalary;
 import com.adeptus.management.exception.AppException;
@@ -13,7 +16,6 @@ import com.adeptus.management.mapper.StaffSalaryMapper;
 import com.adeptus.management.repository.ClassesRepository;
 import com.adeptus.management.repository.RoleRepository;
 import com.adeptus.management.repository.StaffRepository;
-import com.adeptus.management.repository.StaffSalaryRepository;
 import com.adeptus.management.service.StaffService;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -42,7 +44,6 @@ public class StaffServiceImpl implements StaffService {
 
     private final StaffRepository staffRepository;
     private final RoleRepository roleRepository;
-    private final StaffSalaryRepository staffSalaryRepository;
     private final ClassesRepository classesRepository;
 
     private final PasswordEncoder passwordEncoder;
@@ -62,6 +63,12 @@ public class StaffServiceImpl implements StaffService {
     public Page<StaffResponse> getAllStaffWithPagination(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         return staffRepository.getAllStaffsWithPagination(pageable).map(this::toStaffResponse);
+    }
+
+    @Override
+    public StaffResponse getStaffById(Long id){
+        var staff = staffRepository.findActiveStaffById(id).orElseThrow(() -> new AppException(ErrorCode.USER_ID_NOT_FOUND));
+        return toStaffResponse(staff);
     }
 
     @Override
@@ -113,6 +120,21 @@ public class StaffServiceImpl implements StaffService {
 
         return toStaffResponse(newStaff);
     }
+    @Override
+    public StaffResponse updateStaffBasicInfoById(UpdateStaffBasicInfoRequest request, Long id){
+        var staff = staffRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_ID_NOT_FOUND));
+       staffMapper.updateStaff(request,staff);
+        return toStaffResponse(staffRepository.save(staff));
+    }
+
+    @Override
+    public void deleteStaffById(Long id){
+        var staff = staffRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_ID_NOT_FOUND));
+        staff.setIsActive(false);
+        staffRepository.save(staff);
+    }
+
+
 
     private StaffResponse toStaffResponse(Staff staff) {
         var staffResponse = staffMapper.toStaffResponse(staff);
@@ -121,11 +143,17 @@ public class StaffServiceImpl implements StaffService {
         }
 
         staffResponse.setRoles(staff.getRoles().stream().map(roleMapper::toRoleDto).toList());
-        staffResponse.setClasses(staff.getClasses().stream().map(classesMapper::toClassesDto).collect(Collectors.toSet()));
+        staffResponse.setClasses(staff.getClasses().stream().map(this::toClassesDto).collect(Collectors.toSet()));
         staffResponse.setCreatedAt(staff.getCreatedAt());
         staffResponse.setUpdatedAt(staff.getUpdatedAt());
         staffResponse.setIsActive(staff.getIsActive());
         return staffResponse;
+    }
+
+    private ClassesDto toClassesDto(Classes classes){
+        ClassesDto classesDto = classesMapper.toClassesDto(classes);
+        classesDto.setTeacherName(classes.getTeacher().getName());
+        return classesDto;
     }
 
     private void uploadThumbnail(Staff staff, MultipartFile file) throws IOException {

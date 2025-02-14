@@ -21,6 +21,9 @@ public interface StaffRepository extends JpaRepository<Staff,Long> {
     @Query("select a from Staff a where a.isActive = true and a.username = ?1")
     Optional<Staff> findActiveStaffByUsername(String username);
 
+    @Query("select a from Staff a where a.isActive = true and a.id = ?1")
+    Optional<Staff> findActiveStaffById(Long id);
+
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
 

@@ -10,4 +10,5 @@ import lombok.*;
 public class ClassesDto {
     private Long id;
     private String className;
+    private String teacherName;
 }
