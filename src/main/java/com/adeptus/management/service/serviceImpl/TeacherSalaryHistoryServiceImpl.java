@@ -10,14 +10,14 @@ import com.adeptus.management.mapper.TeacherSalaryHistoryMapper;
 import com.adeptus.management.repository.TeacherRepository;
 import com.adeptus.management.repository.TeacherSalaryHistoryRepository;
 import com.adeptus.management.service.ITeacherSalaryHistoryService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TeacherSalaryHistoryServiceImpl implements ITeacherSalaryHistoryService {
 
     private final TeacherSalaryHistoryRepository repository;
