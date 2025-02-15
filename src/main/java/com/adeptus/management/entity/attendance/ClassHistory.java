@@ -1,5 +1,6 @@
-package com.adeptus.management.entity.classes;
+package com.adeptus.management.entity.attendance;
 
+import com.adeptus.management.entity.classes.Classes;
 import com.adeptus.management.entity.student.Student;
 import com.adeptus.management.entity.teacher.Teacher;
 import com.adeptus.management.entity.common.BaseEntity;
