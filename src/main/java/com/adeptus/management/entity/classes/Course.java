@@ -4,6 +4,8 @@ import com.adeptus.management.entity.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "course")
 @Getter
@@ -22,7 +24,6 @@ public class Course extends BaseEntity {
     @Column(length = 500)
     private String description;  // Mô tả khóa học
 
-    @ManyToOne
-    @JoinColumn(name = "class_id", nullable = false)
-    private Classes classes;  // Đổi tên biến từ 'Classes' thành 'classes'
+    @OneToMany(mappedBy = "course")
+    private Set<Classes> classes;
 }

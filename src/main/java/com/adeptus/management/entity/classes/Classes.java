@@ -40,6 +40,7 @@ public class Classes extends BaseEntity {
     @JoinColumn(name = "staff_id", nullable = false)
     private Staff staff;
 
-    @OneToMany(mappedBy = "classes")  // mappedBy phải trùng với tên thuộc tính trong Course
-    private Set<Course> courses;
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
 }
