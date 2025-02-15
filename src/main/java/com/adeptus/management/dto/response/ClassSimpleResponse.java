@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ClassResponse {
+public class ClassSimpleResponse {
     private Long id;
     private String className;
 }

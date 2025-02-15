@@ -2,7 +2,7 @@ package com.adeptus.management.mapper;
 
 import com.adeptus.management.dto.request.teacher.CreateTeacherRequest;
 import com.adeptus.management.dto.request.teacher.UpdateTeacherRequest;
-import com.adeptus.management.dto.response.ClassResponse;
+import com.adeptus.management.dto.response.ClassSimpleResponse;
 import com.adeptus.management.dto.response.TeacherResponse;
 import com.adeptus.management.dto.response.TeacherSalaryResponse;
 import com.adeptus.management.entity.classes.Classes;
@@ -37,5 +37,5 @@ public interface TeacherMapper {
 
     @Mapping(target = "className", source = "className")
     List<TeacherSalaryResponse> toSalaryResponses(Set<TeacherSalaryHistory> salaries);
-    List<ClassResponse> toClassResponses(Set<Classes> classes);
+    List<ClassSimpleResponse> toClassResponses(Set<Classes> classes);
 }

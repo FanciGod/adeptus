@@ -14,5 +14,5 @@ public class TeacherResponse {
     private String name;
     private Boolean isActive;
     private List<TeacherSalaryResponse> salaries;
-    private List<ClassResponse> classes;
+    private List<ClassSimpleResponse> classes;
 }
