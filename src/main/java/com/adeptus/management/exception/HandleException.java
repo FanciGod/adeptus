@@ -78,4 +78,17 @@ public class HandleException {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(EntityDuplicateException.class)
+    public ResponseEntity<Map<String, String>> handleEntityDuplicateException(EntityDuplicateException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(jakarta.validation.ConstraintViolationException.class)
+    public ResponseEntity<Map<String, String>> handleConstraintViolationException(jakarta.validation.ConstraintViolationException ex) {
+        Map<String, String> response = new HashMap<>();
+        ex.getConstraintViolations().forEach(violation ->
+                response.put(violation.getPropertyPath().toString(), violation.getMessage()));
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }

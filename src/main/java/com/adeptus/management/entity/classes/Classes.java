@@ -29,9 +29,6 @@ public class Classes extends BaseEntity {
     @Column(nullable = false)
     private Long pricePerSession;  // Giá mỗi buổi học
 
-    @OneToMany(mappedBy = "classes")
-    private Set<StudentClass> studentClasses; // Quan hệ 1:N với StudentClass
-
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
     private Teacher teacher;  // Quan hệ n:1 với Teacher
@@ -43,4 +40,8 @@ public class Classes extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
+
+    // Relationship
+    @OneToMany(mappedBy = "classes")
+    private Set<StudentClass> studentClasses; // Quan hệ 1:N với StudentClass
 }
