@@ -19,7 +19,4 @@ public class RoleServiceImpl implements RoleService {
     public List<RoleResponse> getAllRoles(){
         return roleRepository.findAll().stream().map(roleMapper::toRoleResponse).toList();
     }
-
-
-
 }
