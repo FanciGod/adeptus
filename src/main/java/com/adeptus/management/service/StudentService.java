@@ -2,6 +2,7 @@ package com.adeptus.management.service;
 
 import com.adeptus.management.dto.ApiResponse;
 import com.adeptus.management.dto.request.student.AddStudentToClassRequest;
+import com.adeptus.management.dto.request.student.CreateMarkRequest;
 import com.adeptus.management.dto.request.student.CreateStudentRequest;
 import com.adeptus.management.dto.request.student.UpdateStudentRequest;
 import com.adeptus.management.dto.response.StudentResponse;
@@ -16,4 +17,5 @@ public interface StudentService {
     ApiResponse<String> deleteStudent(Long id);
     ApiResponse<String> addStudentToClass(AddStudentToClassRequest request);
     ApiResponse<String> removeStudentFromClass(Long studentId, Long classId);
+    ApiResponse<String> addMarkForStudent(CreateMarkRequest request);
 }

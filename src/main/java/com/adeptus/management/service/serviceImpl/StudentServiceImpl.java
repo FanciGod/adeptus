@@ -2,19 +2,20 @@ package com.adeptus.management.service.serviceImpl;
 
 import com.adeptus.management.dto.ApiResponse;
 import com.adeptus.management.dto.request.student.AddStudentToClassRequest;
+import com.adeptus.management.dto.request.student.CreateMarkRequest;
 import com.adeptus.management.dto.request.student.CreateStudentRequest;
 import com.adeptus.management.dto.request.student.UpdateStudentRequest;
 import com.adeptus.management.dto.response.StudentResponse;
 import com.adeptus.management.entity.classes.Classes;
+import com.adeptus.management.entity.classes.Course;
+import com.adeptus.management.entity.student.Mark;
 import com.adeptus.management.entity.student.Student;
 import com.adeptus.management.entity.student.StudentClass;
 import com.adeptus.management.exception.EntityDeletedException;
 import com.adeptus.management.exception.EntityDuplicateException;
 import com.adeptus.management.exception.EntityNotFoundException;
 import com.adeptus.management.mapper.StudentMapper;
-import com.adeptus.management.repository.ClassesRepository;
-import com.adeptus.management.repository.StudentClassRepository;
-import com.adeptus.management.repository.StudentRepository;
+import com.adeptus.management.repository.*;
 import com.adeptus.management.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ public class StudentServiceImpl implements StudentService {
     private final StudentMapper studentMapper;
     private final ClassesRepository classesRepository;
     private final StudentClassRepository studentClassRepository;
+    private final CourseRepository courseRepository;
+    private final MarkRepository markRepository;
 
     @Override
     public List<StudentResponse> getAllStudents() {
@@ -158,6 +161,30 @@ public class StudentServiceImpl implements StudentService {
         return ApiResponse.<String>builder()
                 .message("Student successfully removed from the class.")
                 .result("Removal successful")
+                .build();
+    }
+    @Override
+    @Transactional
+    public ApiResponse<String> addMarkForStudent(CreateMarkRequest request) {
+        Student student = studentRepository.findById(request.getStudentId())
+                .orElseThrow(() -> new EntityNotFoundException("Student", request.getStudentId()));
+
+        Course course = courseRepository.findById(request.getCourseId())
+                .orElseThrow(() -> new EntityNotFoundException("Course", request.getCourseId()));
+
+        // Tạo điểm mới
+        Mark mark = Mark.builder()
+                .student(student)
+                .course(course)
+                .examName(request.getExamName())
+                .mark(request.getMark())
+                .build();
+
+        markRepository.save(mark);
+
+        return ApiResponse.<String>builder()
+                .message("Mark added successfully for student.")
+                .result("Mark entry successful")
                 .build();
     }
 }

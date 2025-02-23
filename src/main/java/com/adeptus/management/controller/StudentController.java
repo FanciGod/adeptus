@@ -2,6 +2,7 @@ package com.adeptus.management.controller;
 
 import com.adeptus.management.dto.ApiResponse;
 import com.adeptus.management.dto.request.student.AddStudentToClassRequest;
+import com.adeptus.management.dto.request.student.CreateMarkRequest;
 import com.adeptus.management.dto.request.student.CreateStudentRequest;
 import com.adeptus.management.dto.request.student.UpdateStudentRequest;
 import com.adeptus.management.dto.response.StudentResponse;
@@ -54,6 +55,11 @@ public class StudentController {
     public ResponseEntity<ApiResponse<String>> removeStudentFromClass(
             @RequestParam Long studentId, @RequestParam Long classId) {
         ApiResponse<String> response = studentService.removeStudentFromClass(studentId, classId);
+        return ResponseEntity.ok(response);
+    }
+    @PostMapping("/add-mark")
+    public ResponseEntity<ApiResponse<String>> addMarkForStudent(@RequestBody @Valid CreateMarkRequest request) {
+        ApiResponse<String> response = studentService.addMarkForStudent(request);
         return ResponseEntity.ok(response);
     }
 }

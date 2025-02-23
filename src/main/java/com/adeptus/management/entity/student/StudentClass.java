@@ -22,7 +22,7 @@ public class StudentClass extends BaseEntity {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER) // Sử dụng EAGER để tải dữ liệu ngay lập tức
     @JoinColumn(name = "class_id", nullable = false)
     private Classes classes;
 
