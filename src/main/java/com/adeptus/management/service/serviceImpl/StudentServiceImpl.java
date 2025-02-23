@@ -1,18 +1,24 @@
 package com.adeptus.management.service.serviceImpl;
 
 import com.adeptus.management.dto.ApiResponse;
+import com.adeptus.management.dto.request.student.AddStudentToClassRequest;
 import com.adeptus.management.dto.request.student.CreateStudentRequest;
 import com.adeptus.management.dto.request.student.UpdateStudentRequest;
 import com.adeptus.management.dto.response.StudentResponse;
+import com.adeptus.management.entity.classes.Classes;
 import com.adeptus.management.entity.student.Student;
+import com.adeptus.management.entity.student.StudentClass;
 import com.adeptus.management.exception.EntityDeletedException;
 import com.adeptus.management.exception.EntityDuplicateException;
 import com.adeptus.management.exception.EntityNotFoundException;
 import com.adeptus.management.mapper.StudentMapper;
+import com.adeptus.management.repository.ClassesRepository;
+import com.adeptus.management.repository.StudentClassRepository;
 import com.adeptus.management.repository.StudentRepository;
 import com.adeptus.management.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +29,8 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
+    private final ClassesRepository classesRepository;
+    private final StudentClassRepository studentClassRepository;
 
     @Override
     public List<StudentResponse> getAllStudents() {
@@ -99,6 +107,34 @@ public class StudentServiceImpl implements StudentService {
                 .code(200)
                 .message("Student deleted successfully.")
                 .result("Success")
+                .build();
+    }
+    @Override
+    @Transactional
+    public ApiResponse<String> addStudentToClass(AddStudentToClassRequest request) {
+        Student student = studentRepository.findById(request.getStudentId())
+                .orElseThrow(() -> new EntityNotFoundException("Student", request.getStudentId()));
+
+        Classes classes = classesRepository.findById(request.getClassId())
+                .orElseThrow(() -> new EntityNotFoundException("Class", request.getClassId()));
+
+        // Kiểm tra xem học viên đã được thêm vào lớp chưa
+        boolean exists = studentClassRepository.existsByStudentAndClasses(student, classes);
+        if (exists) {
+            throw new EntityDuplicateException("Student already enrolled in this class");
+        }
+
+        StudentClass studentClass = new StudentClass();
+        studentClass.setStudent(student);
+        studentClass.setClasses(classes);
+        studentClass.setLessonRemain(request.getLessonRemain());
+        studentClass.setTotalPaid(request.getTotalPaid());
+
+        studentClassRepository.save(studentClass);
+
+        return ApiResponse.<String>builder()
+                .message("Student successfully enrolled in the class.")
+                .result("Enrollment successful")
                 .build();
     }
 }

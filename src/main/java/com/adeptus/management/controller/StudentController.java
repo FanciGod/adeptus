@@ -1,6 +1,7 @@
 package com.adeptus.management.controller;
 
 import com.adeptus.management.dto.ApiResponse;
+import com.adeptus.management.dto.request.student.AddStudentToClassRequest;
 import com.adeptus.management.dto.request.student.CreateStudentRequest;
 import com.adeptus.management.dto.request.student.UpdateStudentRequest;
 import com.adeptus.management.dto.response.StudentResponse;
@@ -41,6 +42,12 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<String>> deleteStudent(@PathVariable Long id) {
         ApiResponse<String> response = studentService.deleteStudent(id);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/add-to-class")
+    public ResponseEntity<ApiResponse<String>> addStudentToClass(@RequestBody @Valid AddStudentToClassRequest request) {
+        ApiResponse<String> response = studentService.addStudentToClass(request);
         return ResponseEntity.ok(response);
     }
 }
