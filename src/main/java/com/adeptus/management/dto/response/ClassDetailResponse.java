@@ -2,7 +2,7 @@ package com.adeptus.management.dto.response;
 
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,6 +16,6 @@ public class ClassDetailResponse {
     private CourseResponse course;
     private TeacherResponse teacher;
     private SimpleStaffResponse staff;
-//    private List<StudentResponse> students;
+    private Set<StudentResponse> students;
     private Boolean isActive;
 }
