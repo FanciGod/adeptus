@@ -50,4 +50,10 @@ public class StudentController {
         ApiResponse<String> response = studentService.addStudentToClass(request);
         return ResponseEntity.ok(response);
     }
+    @DeleteMapping("/remove-from-class")
+    public ResponseEntity<ApiResponse<String>> removeStudentFromClass(
+            @RequestParam Long studentId, @RequestParam Long classId) {
+        ApiResponse<String> response = studentService.removeStudentFromClass(studentId, classId);
+        return ResponseEntity.ok(response);
+    }
 }

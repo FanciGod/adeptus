@@ -15,4 +15,5 @@ public interface StudentService {
     StudentResponse updateStudent(Long id, UpdateStudentRequest request);
     ApiResponse<String> deleteStudent(Long id);
     ApiResponse<String> addStudentToClass(AddStudentToClassRequest request);
+    ApiResponse<String> removeStudentFromClass(Long studentId, Long classId);
 }

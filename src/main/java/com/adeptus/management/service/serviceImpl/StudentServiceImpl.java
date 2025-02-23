@@ -137,4 +137,27 @@ public class StudentServiceImpl implements StudentService {
                 .result("Enrollment successful")
                 .build();
     }
+    @Override
+    @Transactional
+    public ApiResponse<String> removeStudentFromClass(Long studentId, Long classId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new EntityNotFoundException("Student", studentId));
+
+        Classes classes = classesRepository.findById(classId)
+                .orElseThrow(() -> new EntityNotFoundException("Class", classId));
+
+        // Kiểm tra xem học viên có trong lớp học không
+        boolean exists = studentClassRepository.existsByStudentAndClasses(student, classes);
+        if (!exists) {
+            throw new EntityNotFoundException("Student is not enrolled in this class");
+        }
+
+        // Xóa bản ghi khỏi bảng StudentClass
+        studentClassRepository.deleteByStudentIdAndClassesId(studentId, classId);
+
+        return ApiResponse.<String>builder()
+                .message("Student successfully removed from the class.")
+                .result("Removal successful")
+                .build();
+    }
 }
