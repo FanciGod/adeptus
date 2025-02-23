@@ -54,11 +54,11 @@ public class StudentServiceImpl implements StudentService {
 
         // Nếu student đã tồn tại nhưng bị xóa (isActive = false), ném ngoại lệ mới
         if (existingStudentByEmail.isPresent() && !existingStudentByEmail.get().getIsActive()) {
-            throw new EntityDeletedException(" With email " + request.getEmail());
+            throw new EntityDeletedException(" Email " + request.getEmail() + "already exists end deleted!");
         }
 
         if (existingStudentByPhone.isPresent() && !existingStudentByPhone.get().getIsActive()) {
-            throw new EntityDeletedException("With email number " + request.getPhone());
+            throw new EntityDeletedException("With email number " + request.getPhone() +"already exists end deleted!");
         }
 
         // Kiểm tra trùng lặp với các học viên đang hoạt động
