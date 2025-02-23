@@ -91,4 +91,11 @@ public class HandleException {
                 response.put(violation.getPropertyPath().toString(), violation.getMessage()));
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(EntityDeletedException.class)
+    public ResponseEntity<Map<String, String>> handleStudentDeletedException(EntityDeletedException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
 }

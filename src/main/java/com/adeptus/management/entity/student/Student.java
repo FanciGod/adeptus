@@ -37,6 +37,7 @@ public class Student extends BaseEntity {
     @Column(nullable = false)
     private LocalDate dob;  // Ngày sinh
 
+    // Relationships
     @OneToMany(mappedBy = "student")
     private Set<StudentClass> studentClasses; // Quan hệ 1:N với StudentClass
 
