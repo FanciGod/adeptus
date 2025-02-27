@@ -1,10 +1,9 @@
 package com.adeptus.management.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "teacher")
@@ -18,13 +17,14 @@ public class Teacher extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, nullable = false)
-    @Size(max = 50, message = "Tên giáo viên không được vượt quá 50 ký tự")
+    @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "teacher")
-    private Set<TeacherSalaryHistory> salaries;  // Quan hệ 1:n với TeacherSalary
+    private String phone;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TeacherSalary> salaries;  // Quan hệ 1:n với TeacherSalary
 
     @OneToMany(mappedBy = "teacher")
-    private Set<Classes> aClasses;  // Quan hệ 1:n với Classes
+    private List<Classes> aClasses;  // Quan hệ 1:n với Classes
 }

@@ -24,9 +24,4 @@ public class StudentClass extends BaseEntity {
     @JoinColumn(name = "class_id", nullable = false)
     private Classes classes;
 
-    @Column(nullable = false)
-    private Integer lessonRemain; // Số buổi học còn lại cho lớp này
-
-    @Column(nullable = false)
-    private Long totalPaid; // Số tiền đã đóng
 }

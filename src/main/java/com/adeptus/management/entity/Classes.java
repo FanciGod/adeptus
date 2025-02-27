@@ -2,9 +2,12 @@ package com.adeptus.management.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "class")
@@ -26,7 +29,7 @@ public class Classes extends BaseEntity {
     private Long pricePerSession;  // Giá mỗi buổi học
 
     @OneToMany(mappedBy = "classes")
-    private Set<StudentClass> studentClasses; // Quan hệ 1:N với StudentClass
+    private List<StudentClass> studentClasses; // Quan hệ 1:N với StudentClass
 
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
@@ -36,6 +39,7 @@ public class Classes extends BaseEntity {
     @JoinColumn(name = "staff_id", nullable = false)
     private Staff staff;
 
-    @OneToMany(mappedBy = "classes")  // mappedBy phải trùng với tên thuộc tính trong Course
-    private Set<Course> courses;
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)  // Một lớp chỉ thuộc về một môn học
+    private Course course;
 }

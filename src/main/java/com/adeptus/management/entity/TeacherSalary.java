@@ -11,7 +11,8 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherSalaryHistory {
+@Builder
+public class TeacherSalary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,7 @@ public class TeacherSalaryHistory {
     private Teacher teacher;  // Quan hệ nhiều-một với Teacher
 
     @Column(nullable = false)
-    private Long salary;  // Lương của giáo viên trong khoảng thời gian
+    private Long salaryPerSession;  // Lương của giáo viên trong khoảng thời gian
 
     @Column(nullable = false)
     private LocalDate startDate;  // Ngày bắt đầu của khoảng thời gian tính lương

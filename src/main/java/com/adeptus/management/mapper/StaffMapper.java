@@ -1,5 +1,6 @@
 package com.adeptus.management.mapper;
 
+import com.adeptus.management.dto.StaffDto;
 import com.adeptus.management.dto.request.CreateNewStaffRequest;
 import com.adeptus.management.dto.request.UpdateStaffBasicInfoRequest;
 import com.adeptus.management.dto.response.StaffResponse;
@@ -15,5 +16,8 @@ public interface StaffMapper {
 
     Staff toStaff(UpdateStaffBasicInfoRequest request);
 
+    StaffDto toStaffDto(Staff staff);
+
     void updateStaff(UpdateStaffBasicInfoRequest request, @MappingTarget Staff staff);
+
 }

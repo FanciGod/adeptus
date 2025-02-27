@@ -3,6 +3,8 @@ package com.adeptus.management.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "course")
 @Getter
@@ -21,7 +23,6 @@ public class Course extends BaseEntity {
     @Column(length = 500)
     private String description;  // Mô tả khóa học
 
-    @ManyToOne
-    @JoinColumn(name = "class_id", nullable = false)
-    private Classes classes;  // Đổi tên biến từ 'Classes' thành 'classes'
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Classes> classes;
 }

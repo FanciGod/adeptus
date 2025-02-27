@@ -4,6 +4,7 @@ import com.adeptus.management.dto.ClassesDto;
 import com.adeptus.management.dto.request.CreateNewStaffRequest;
 import com.adeptus.management.dto.request.UpdateStaffBasicInfoRequest;
 import com.adeptus.management.dto.response.StaffResponse;
+import com.adeptus.management.entity.BaseEntity;
 import com.adeptus.management.entity.Classes;
 import com.adeptus.management.entity.Staff;
 import com.adeptus.management.entity.StaffSalary;
@@ -32,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -105,7 +107,7 @@ public class StaffServiceImpl implements StaffService {
                 .endDate(LocalDate.now().plusYears(30))
                 .build();
 
-        staff.setSalaries(new HashSet<>());
+        staff.setSalaries(new ArrayList<>());
         staff.getSalaries().add(staffSalary);
 
         if (staff.getClasses() == null) {
@@ -136,14 +138,16 @@ public class StaffServiceImpl implements StaffService {
 
 
 
+
+
     private StaffResponse toStaffResponse(Staff staff) {
         var staffResponse = staffMapper.toStaffResponse(staff);
         if (staff.getSalaries() != null) {
             staffResponse.setSalaries(staff.getSalaries().stream().map(staffSalaryMapper::toStaffSalaryDto).toList());
         }
 
-        staffResponse.setRoles(staff.getRoles().stream().map(roleMapper::toRoleDto).toList());
-        staffResponse.setClasses(staff.getClasses().stream().map(this::toClassesDto).collect(Collectors.toSet()));
+        staffResponse.setRoles(staff.getRoles().stream().filter(BaseEntity::getIsActive).map(roleMapper::toRoleDto).toList());
+        staffResponse.setClasses(staff.getClasses().stream().filter(BaseEntity::getIsActive).map(this::toClassesDto).collect(Collectors.toSet()));
         staffResponse.setCreatedAt(staff.getCreatedAt());
         staffResponse.setUpdatedAt(staff.getUpdatedAt());
         staffResponse.setIsActive(staff.getIsActive());

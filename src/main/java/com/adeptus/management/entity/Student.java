@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,8 +38,8 @@ public class Student extends BaseEntity {
     private LocalDate dob;  // Ngày sinh
 
     @OneToMany(mappedBy = "student")
-    private Set<StudentClass> studentClasses; // Quan hệ 1:N với StudentClass
+    private List<StudentClass> studentClasses; // Quan hệ 1:N với StudentClass
 
     @OneToMany(mappedBy = "student")
-    private Set<Mark> marks;  // Quan hệ 1:n với Mark
+    private List<Mark> marks;  // Quan hệ 1:n với Mark
 }

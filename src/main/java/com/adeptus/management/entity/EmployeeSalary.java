@@ -2,7 +2,6 @@ package com.adeptus.management.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
@@ -12,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeSalaryHistory {
+public class EmployeeSalary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

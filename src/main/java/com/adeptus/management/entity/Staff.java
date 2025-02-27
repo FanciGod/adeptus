@@ -6,7 +6,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
+
 @Entity
 @Table(name = "staff")
 @Getter
@@ -17,29 +19,18 @@ public class Staff extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(length = 20, nullable = false, unique = true)
-
     private String username;
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String password;
-
-    @Column(length = 50, nullable = false)
     private String fullName;
-
-    @Column(length = 100, nullable = false, unique = true)
-
     private String email;
-
     private LocalDate dob;
-
     private String thumbnailUrl;
-
     private String thumbnailPublicId;
 
     @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<StaffSalary> salaries;  // Quan hệ 1:n với StaffSalary
+    private List<StaffSalary> salaries;  // Quan hệ 1:n với StaffSalary
 
     @Column(length = 15, nullable = false, unique = true)
     private String phone;
