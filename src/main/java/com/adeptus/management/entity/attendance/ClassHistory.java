@@ -24,7 +24,7 @@ public class ClassHistory extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
-    private Classes aClasses;  // Quan hệ nhiều-một với Classes (1 lớp học)
+    private Classes classes;  // Quan hệ nhiều-một với Classes (1 lớp học)
 
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)

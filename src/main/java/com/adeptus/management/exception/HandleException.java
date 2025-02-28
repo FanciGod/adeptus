@@ -97,5 +97,12 @@ public class HandleException {
         response.put("error", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(StudentOutOfLessonsException.class)
+    public ResponseEntity<Map<String, String>> handleStudentOutOfLessonsException(StudentOutOfLessonsException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
 
 }
