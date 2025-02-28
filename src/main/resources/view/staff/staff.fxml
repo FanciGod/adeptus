@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="682.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.StaffController">
+<AnchorPane prefHeight="682.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.staff.StaffController">
     <stylesheets>
-        <URL value="@../css/home.css" />
-        <URL value="@../css/staff.css" />
+        <URL value="@../../css/staff.css" />
     </stylesheets>
     <Label layoutX="28.0" layoutY="22.0" text="STAFF" textFill="#b17457">
         <font>

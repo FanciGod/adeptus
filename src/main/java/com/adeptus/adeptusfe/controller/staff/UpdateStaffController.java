@@ -1,12 +1,10 @@
-package com.adeptus.adeptusfe.controller;
+package com.adeptus.adeptusfe.controller.staff;
 
 import com.adeptus.adeptusfe.dto.request.UpdateStaffBasicInfoRequest;
 import com.adeptus.adeptusfe.dto.response.ApiResponse;
 import com.adeptus.adeptusfe.dto.response.StaffResponse;
 import com.adeptus.adeptusfe.service.StaffService;
-import com.adeptus.adeptusfe.utility.JwtUtils;
 import com.adeptus.adeptusfe.utility.Message;
-import com.adeptus.adeptusfe.utility.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

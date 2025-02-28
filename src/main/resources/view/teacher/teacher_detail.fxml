@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../css/detail.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.teacher.TeacherDetailController">
+   <children>
+      <AnchorPane prefHeight="120.0" prefWidth="1029.0">
+         <children>
+            <Label fx:id="headerLabel" layoutX="71.0" layoutY="43.0" text="Label" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="5.0" layoutY="130.0" prefHeight="648.0" prefWidth="1024.0">
+         <children>
+            <VBox layoutX="25.0" layoutY="14.0" prefHeight="185.0" prefWidth="479.0" AnchorPane.bottomAnchor="449.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="14.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Name:" />
+                        <Label fx:id="name" text="Label" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Phone:" />
+                        <Label fx:id="phone" text="Label" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <TableView fx:id="salaryTable" layoutX="25.0" layoutY="209.0" prefHeight="373.0" prefWidth="479.0">
+               <columns>
+                  <TableColumn fx:id="salaryColumn" prefWidth="147.0" text="Salary" />
+                  <TableColumn fx:id="startDateColumn" prefWidth="161.0" text="Start date" />
+                  <TableColumn fx:id="endDateColumn" prefWidth="170.0" text="End date" />
+               </columns>
+            </TableView>
+            <TableView fx:id="classTable" layoutX="553.0" layoutY="209.0" prefHeight="373.0" prefWidth="438.0">
+               <columns>
+                  <TableColumn fx:id="idColumn" prefWidth="42.0" text="ID" />
+                  <TableColumn fx:id="classNameColumn" prefWidth="395.0" text="Class name" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

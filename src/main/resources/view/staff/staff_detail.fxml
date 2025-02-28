@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/staff_detail.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.StaffDetailController">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../css/detail.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.staff.StaffDetailController">
    <children>
       <AnchorPane prefHeight="120.0" prefWidth="1029.0">
          <children>
@@ -39,7 +39,7 @@
                   </HBox>
                </children>
             </VBox>
-            <TableView layoutX="25.0" layoutY="209.0" prefHeight="373.0" prefWidth="479.0">
+            <TableView fx:id="salaryTable" layoutX="25.0" layoutY="209.0" prefHeight="373.0" prefWidth="479.0">
               <columns>
                 <TableColumn fx:id="salaryColumn" prefWidth="147.0" text="Salary" />
                 <TableColumn fx:id="startDateColumn" prefWidth="161.0" text="Start date" />

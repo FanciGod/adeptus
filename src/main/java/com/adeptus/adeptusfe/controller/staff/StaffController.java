@@ -1,4 +1,4 @@
-package com.adeptus.adeptusfe.controller;
+package com.adeptus.adeptusfe.controller.staff;
 
 import com.adeptus.adeptusfe.dto.RoleDto;
 import com.adeptus.adeptusfe.dto.response.ApiResponse;
@@ -160,7 +160,7 @@ public class StaffController {
         try {
             Stage currentStage = (Stage) newStaffButton.getScene().getWindow();
             // Tạo một FXMLLoader để load tệp FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/new_staff.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staff/new_staff.fxml"));
 
             // Load cửa sổ mới
             Parent root = loader.load();
@@ -202,7 +202,7 @@ public class StaffController {
 
     private void openUpdateStaffWindow(StaffResponse staff) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/update_staff.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staff/update_staff.fxml"));
             Parent root = loader.load();
 
             // Truyền ID vào controller của cửa sổ mới
@@ -233,7 +233,7 @@ public class StaffController {
 
     private void openStaffDetailWindow(StaffResponse staff) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staff_detail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staff/staff_detail.fxml"));
             Parent root = loader.load();
 
             // Truyền ID vào controller của cửa sổ mới

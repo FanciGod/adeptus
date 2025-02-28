@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../css/new.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.teacher.NewTeacherController">
+   <children>
+      <Label fx:id="largeLabel" layoutX="60.0" layoutY="40.0" text="NEW TEACHER" />
+      <VBox layoutX="217.0" layoutY="204.0" prefHeight="180.0" prefWidth="616.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Teacher name:" />
+                  <TextField fx:id="teacherNameInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Phone number:" />
+                  <TextField fx:id="phoneInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="815.0">
+               <children>
+                  <Label text="Salary per session:" />
+                  <TextField fx:id="salaryPerSessionInput" prefHeight="25.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="createStaffButton" layoutX="442.0" layoutY="685.0" mnemonicParsing="false" onAction="#handleCreateTeacher" prefHeight="39.0" prefWidth="150.0" text="Create" />
+   </children>
+</AnchorPane>

@@ -59,19 +59,19 @@ public class HomeController {
                 newPane = FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"));
                 break;
             case "Class":
-                newPane = FXMLLoader.load(getClass().getResource("/view/class.fxml"));
+                newPane = FXMLLoader.load(getClass().getResource("/view/class/class.fxml"));
                 break;
             case "Course":
-                newPane = FXMLLoader.load(getClass().getResource("/view/course.fxml"));
+                newPane = FXMLLoader.load(getClass().getResource("/view/course/course.fxml"));
                 break;
             case "Teacher":
-                newPane = FXMLLoader.load(getClass().getResource("/view/teacher.fxml"));
+                newPane = FXMLLoader.load(getClass().getResource("/view/teacher/teacher.fxml"));
                 break;
             case "Student":
                 newPane = FXMLLoader.load(getClass().getResource("/view/student.fxml"));
                 break;
             case "Staff":
-                newPane = FXMLLoader.load(getClass().getResource("/view/staff.fxml"));
+                newPane = FXMLLoader.load(getClass().getResource("/view/staff/staff.fxml"));
                 break;
             case "Transaction":
                 newPane = FXMLLoader.load(getClass().getResource("/view/transaction.fxml"));

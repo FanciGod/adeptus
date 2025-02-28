@@ -1,4 +1,4 @@
-package com.adeptus.adeptusfe.controller;
+package com.adeptus.adeptusfe.controller.staff;
 
 import com.adeptus.adeptusfe.dto.request.CreateNewStaffRequest;
 import com.adeptus.adeptusfe.dto.response.ApiResponse;
@@ -118,6 +118,8 @@ public class NewStaffController {
             if (parentController != null) {
                 parentController.loadStaff(0); // Đóng cửa sổ staff cũ
             }
+        }else{
+            Message.showError(newStaff.getMessage());
         }
     }
 

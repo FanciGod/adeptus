@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/update_staff.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.UpdateStaffController">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../css/update.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adeptus.adeptusfe.controller.staff.UpdateStaffController">
    <children>
       <AnchorPane layoutX="164.0" layoutY="41.0" prefHeight="120.0" prefWidth="1024.0" AnchorPane.bottomAnchor="648.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

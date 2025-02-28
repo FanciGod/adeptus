@@ -22,3 +22,11 @@ Button:pressed {
 .root {
     -fx-background-color: #FAF7F0;
 }
+
+#headerLabel{
+    -fx-font-family: "Verdana Bold";
+    -fx-font-size: 30px;
+    -fx-text-fill: #b17457;
+    -fx-pref-width: 600px;
+    -fx-pref-height: 40px;
+}
